@@ -1,3 +1,7 @@
+// src/pages/Home.tsx
+import FaqAccordion from "../components/FaqAccordion";
+import TestimonialsCarousel from "../components/TestimonialsCarousel";
+
 const Home = () => {
   return (
     <div className="home-page">
@@ -195,7 +199,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
+      {/* FAQ SECTION WITH REACT ACCORDION */}
       <section id="FAQ-link" className="faq-section">
         <div className="content">
           <p className="subheading color-purple">Everyone has questions -</p>
@@ -203,9 +207,10 @@ const Home = () => {
             Here are a few <span className="color-purple">FAQs</span> to help
             you feel at ease.
           </h2>
-          <div className="accordion">
-            {/* React FAQ accordion can go here later */}
-          </div>
+
+          {/* React FAQ accordion replaces the old JS module */}
+          <FaqAccordion />
+
           <div className="buttons">
             <a href="#" className="btn btn-secondary bg-purple color-black">
               Still have Questions?
@@ -214,7 +219,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS SECTION WITH REACT CAROUSEL */}
       <section className="testimonials-section">
         <div className="testimonials-header">
           <p className="subheading color-green">Testimonials...</p>
@@ -223,14 +228,11 @@ const Home = () => {
             <span className="highlight">experience.</span>
           </h2>
         </div>
-        <div className="testimonials-carousel">
-          {/* Dynamic testimonials will go here in React later */}
-        </div>
-        <div className="testimonial-controls">
-          <button className="control-button left">&#8592;</button>
-          <button className="control-button right">&#8594;</button>
-        </div>
+
+        {/* React-based carousel */}
+        <TestimonialsCarousel />
       </section>
+
       <p className="testimonial-note">
         Testimonials of services offered are provided by real clients. For
         client protection, names have been changed for anonymity.
