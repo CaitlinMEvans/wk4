@@ -1,6 +1,8 @@
 // src/pages/Home.tsx
 import FaqAccordion from "../components/FaqAccordion";
 import TestimonialsCarousel from "../components/TestimonialsCarousel";
+import ServicesGrid from "../components/ServicesGrid";
+
 
 const Home = () => {
   return (
@@ -122,8 +124,9 @@ const Home = () => {
             preferences, and comfort are always at the center of our care.
           </p>
         </div>
-        <div className="services-grid">
-          <div className="service-card">
+        <ServicesGrid filter="all" limit={4} />
+        {/* <div className="services-grid"
+           <div className="service-card">
             <img src="/images/individual.jpg" alt="Individual Therapy" />
             <h3>Individual</h3>
             <p>
@@ -160,8 +163,8 @@ const Home = () => {
               challenges, build resilience, and develop essential coping skills
               tailored to their unique needs.
             </p>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
       </section>
 
       {/* APPOINTMENT BANNER */}

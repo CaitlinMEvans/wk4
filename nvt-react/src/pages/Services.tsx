@@ -1,3 +1,8 @@
+// src/pages/Services.tsx
+import ServicesGrid from "../components/ServicesGrid";
+import FaqAccordion from "../components/FaqAccordion";
+import RecentlyViewed from "../components/RecentlyViewed";
+
 const Services = () => {
   return (
     <div className="services-page">
@@ -16,54 +21,8 @@ const Services = () => {
             right approach for your personal journey.
           </p>
 
-          <div className="service-filters">
-            {/* Later you can wire these buttons to React state */}
-            <button className="service-filter-button active" data-filter="all">
-              All Services
-            </button>
-            <button className="service-filter-button" data-filter="In-person">
-              In-person Only
-            </button>
-            <button className="service-filter-button" data-filter="Virtual">
-              Virtual Only
-            </button>
-          </div>
-        </div>
-
-        <div className="services-grid">
-          {/* Static cards for now; can be replaced with mapped data */}
-          <div className="service-card">
-            <h3>Individual Therapy</h3>
-            <p>
-              One-on-one sessions focused on your specific goals, challenges,
-              and growth. Ideal for processing emotions, managing anxiety or
-              depression, or working through life transitions.
-            </p>
-          </div>
-          <div className="service-card">
-            <h3>Couple Therapy</h3>
-            <p>
-              Support for partners navigating communication issues, conflict,
-              and changing dynamics. Build stronger connection and shared
-              understanding.
-            </p>
-          </div>
-          <div className="service-card">
-            <h3>Family Therapy</h3>
-            <p>
-              A space for families to address conflict, miscommunication, and
-              patterns that keep everyone stuck. Work together toward a more
-              supportive home environment.
-            </p>
-          </div>
-          <div className="service-card">
-            <h3>Adolescent Therapy</h3>
-            <p>
-              Focused support for teens navigating identity, relationships,
-              school stress, and emotional regulation in a developmentally
-              appropriate way.
-            </p>
-          </div>
+          {/* Dynamic filter + grid + modal */}
+          <ServicesGrid />
         </div>
       </section>
 
@@ -125,9 +84,7 @@ const Services = () => {
 
       {/* RECENTLY VIEWED */}
       <section className="recently-viewed-section">
-        <div className="recently-viewed-container">
-          {/* React version of recently viewed can go here later */}
-        </div>
+        <RecentlyViewed />
       </section>
 
       {/* FAQ SECTION */}
@@ -137,9 +94,8 @@ const Services = () => {
           <h2 className="heading">
             Frequently Asked <span className="color-purple">Questions</span>
           </h2>
-          <div className="accordion">
-            {/* FAQ accordion component in React later */}
-          </div>
+
+          <FaqAccordion />
         </div>
       </section>
 

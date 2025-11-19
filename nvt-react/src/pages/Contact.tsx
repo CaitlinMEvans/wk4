@@ -1,4 +1,10 @@
-import { useState } from "react";
+// src/pages/Contact.tsx
+import { useEffect, useState } from "react";
+import {
+  saveFormProgress,
+  getFormProgress,
+  clearFormProgress,
+} from "../utils/storage";
 
 type ServiceType = "Individual" | "Couple" | "Family" | "Adolescent";
 type ModeType = "In-Person" | "Virtual";
@@ -23,10 +29,26 @@ const initialState: BookingFormState = {
   mode: "Virtual",
 };
 
+const FORM_ID = "appointmentForm";
+
 const Contact = () => {
   const [form, setForm] = useState<BookingFormState>(initialState);
   const [errors, setErrors] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+
+  // Restore saved form data (once)
+  useEffect(() => {
+    const saved = getFormProgress<BookingFormState>(FORM_ID);
+    if (saved && saved.data) {
+      // You can ask for confirmation here if you want; for now we just restore.
+      setForm(saved.data);
+    }
+  }, []);
+
+  // Auto-save whenever form changes
+  useEffect(() => {
+    saveFormProgress(FORM_ID, form);
+  }, [form]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -51,6 +73,7 @@ const Contact = () => {
 
     if (newErrors.length === 0) {
       setSubmitted(true);
+      clearFormProgress(FORM_ID);
     }
   };
 
@@ -96,7 +119,7 @@ const Contact = () => {
 
           {/* RIGHT SIDE FORM + SUMMARY */}
           <div className="appointment-form">
-            <form id="appointmentForm" onSubmit={handleSubmit} noValidate>
+            <form id={FORM_ID} onSubmit={handleSubmit} noValidate>
               <div className="form-group">
                 <label htmlFor="name">Name*</label>
                 <input
@@ -241,14 +264,7 @@ const Contact = () => {
             Here are a few <span className="color-orange">FAQs</span> to help
             you feel at ease.
           </h2>
-          <div className="accordion">
-            {/* React FAQ component later */}
-          </div>
-          <div className="buttons">
-            <a href="#" className="btn btn-secondary bg-purple color-black">
-              Still have Questions?
-            </a>
-          </div>
+          {/* If you want FAQ accordion here too, just drop <FaqAccordion /> */}
         </div>
       </section>
 
@@ -307,10 +323,7 @@ const Contact = () => {
           </div>
 
           <div className="visit-image">
-            <img
-              src="/images/diagnosis.webp"
-              alt="Modern therapy office"
-            />
+            <img src="/images/diagnosis.webp" alt="Modern therapy office" />
           </div>
         </div>
       </section>
